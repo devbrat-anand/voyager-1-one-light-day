@@ -1,0 +1,6 @@
+/dist/
+__pycache__/
+/node_modules/
+/game.js
+/public/
+.DS_Store

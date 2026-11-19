@@ -1,0 +1,170 @@
+:root { color-scheme:dark; --ink:#071322; --panel:#102238; --line:#284258; --text:#edf1f8; --muted:#a9bdd2; --gold:#f3c878; --blue:#8edaf4; --violet:#c0a2ff; font-family:"Avenir Next",Avenir,"Segoe UI",sans-serif; font-synthesis:none; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--ink); color:var(--text); height:100vh; height:100dvh; display:flex; flex-direction:column; overflow:hidden; }
+button,input,select { font:inherit; }
+button,select { cursor:pointer; }
+button { color:inherit; }
+button:disabled { opacity:.45; cursor:not-allowed; }
+a { color:var(--blue); text-underline-offset:4px; }
+button:focus-visible,a:focus-visible,select:focus-visible,canvas:focus-visible,summary:focus-visible,input:focus-visible { outline:2px solid var(--blue); outline-offset:4px; }
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+.skip-link { position:fixed; top:10px; left:20px; z-index:20; padding:14px; background:var(--ink); }
+.skip-link:not(:focus) { clip-path:inset(50%); width:1px; height:1px; padding:0; overflow:hidden; }
+.masthead { min-height:54px; flex-shrink:0; padding:7px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; border-bottom:1px solid var(--line); }
+.brand { display:flex; align-items:center; gap:9px; color:var(--text); text-decoration:none; font-size:15px; }
+.brand svg { width:30px; fill:none; stroke:var(--gold); stroke-width:1; }
+.brand small { display:block; font-size:9px; color:var(--gold); margin-top:2px; }
+.chapter-picker { margin-left:auto; }
+.chapter-picker select { width:280px; max-width:32vw; }
+.header-actions { display:flex; align-items:center; gap:14px; }
+.quiet { background:transparent; border:0; font-size:12px; padding:9px 5px; color:var(--muted); }
+.quiet:hover { color:var(--text); }
+.sound-settings { position:relative; }
+.sound-settings summary { cursor:pointer; list-style:none; }
+.sound-settings summary::-webkit-details-marker { display:none; }
+.sound-settings[open] summary { color:var(--gold); }
+.sound-settings fieldset { position:absolute; z-index:12; top:100%; right:0; width:210px; margin:4px 0 0; padding:15px; border:1px solid var(--line); border-radius:4px; background:var(--panel); box-shadow:0 12px 30px #0008; }
+.sound-settings legend { color:var(--gold); font-size:12px; }
+.sound-settings label { display:flex; align-items:center; gap:9px; font-size:13px; padding:8px 0; cursor:pointer; }
+.sound-settings input { accent-color:var(--gold); width:17px; height:17px; margin:0; }
+.sound-settings small { display:block; font-size:10px; line-height:1.6; margin-top:8px; color:var(--muted); }
+#fullscreen { font-size:25px; padding:0 6px; }
+main { flex:1; min-height:0; width:100%; display:flex; position:relative; }
+#voyage { display:flex; flex:1; min-height:0; min-width:0; }
+.app-status { position:absolute; z-index:8; top:0; left:0; right:0; background:#19344af5; padding:12px 4%; font-size:12px; }
+.app-status:empty { display:none; }
+.app-status.error { color:#ffb5af; }
+select { padding:10px 12px; color:var(--text); background:var(--panel); border:1px solid var(--line); border-radius:4px; font-size:11px; }
+.voyage-stage { position:relative; flex:1; min-width:0; min-height:0; background:#020510; overflow:hidden; isolation:isolate; }
+#voyage-canvas { display:block; width:100%; height:100%; touch-action:none; outline-offset:-4px; }
+.voyage-hud { pointer-events:none; position:absolute; z-index:2; top:24px; left:4%; right:4%; display:flex; justify-content:space-between; gap:20px; text-shadow:0 2px 6px #000; }
+.voyage-hud > div { display:flex; flex-direction:column; gap:7px; }
+.voyage-hud span { font-size:11px; color:#d5e0ee; }
+.voyage-hud strong { font-size:36px; font-weight:400; font-variant-numeric:tabular-nums; }
+.voyage-score strong { color:var(--gold); }
+.voyage-hud small { font-size:10px; color:#c2d3e6; }
+#voyage-ufos { color:var(--violet); }
+#journey-score { color:var(--gold); }
+.voyage-epoch { text-align:center; }
+.voyage-epoch strong { font-size:18px; }
+#voyage-lighttime { color:var(--gold); }
+.voyage-combo { text-align:right; }
+.voyage-combo strong { color:var(--blue); }
+.voyage-actions { position:absolute; z-index:3; top:145px; right:4%; display:flex; gap:10px; }
+.voyage-actions button { padding:8px 11px; background:#061521c9; border:1px solid #6c849b80; border-radius:4px; color:#dfebf7; font-size:10px; }
+.voyage-overlay { position:absolute; z-index:4; inset:125px 0 85px; display:flex; align-items:center; padding:0 7%; overflow-y:auto; pointer-events:none; background:linear-gradient(90deg,#02050be0, #02050b55 40%,transparent 85%); }
+.voyage-overlay[hidden] { display:none; }
+.voyage-intro { max-width:470px; max-height:100%; pointer-events:auto; }
+.kicker { font-size:11px; color:var(--gold); margin:0 0 12px; }
+.voyage-intro h2 { font-family:Georgia,serif; font-size:clamp(38px,4.7vw,68px); line-height:1.08; letter-spacing:-.04em; font-weight:400; margin:10px 0 18px; }
+.voyage-intro > p:not(.kicker) { font-size:12px; line-height:1.8; max-width:49ch; color:#c2d0e0; }
+.primary { width:100%; max-width:290px; display:flex; justify-content:space-between; padding:14px 17px; border:1px solid var(--gold); border-radius:4px; background:var(--gold); color:#182337; font-weight:600; font-size:13px; margin-top:20px; }
+.primary:hover { background:#ffdf9c; }
+.voyage-intro > small { display:block; font-size:10px; line-height:1.9; color:#b3c5d9; margin-top:12px; }
+.pickup-guide { display:flex; gap:22px; margin:18px 0 12px; }
+.pickup-guide > span { display:flex; align-items:center; gap:7px; font-size:10px; color:var(--muted); }
+.pickup-guide strong { color:var(--text); font-weight:500; }
+.record-icon { display:inline-block; width:13px; height:13px; border:3px double var(--gold); border-radius:50%; }
+.ufo-icon { font-size:19px; font-style:normal; color:var(--violet); }
+.voyage-result { color:var(--gold) !important; }
+.voyage-intro > .level-transition { color:var(--blue) !important; font-size:14px !important; }
+#voyage-next,#voyage-milestone { display:block; color:var(--blue); padding-left:0; font-size:11px; }
+#voyage-next[hidden],#voyage-milestone[hidden] { display:none; }
+.voyage-bottom { position:absolute; z-index:3; bottom:20px; left:4%; right:4%; display:flex; justify-content:space-between; align-items:flex-end; gap:30px; pointer-events:none; }
+.voyage-bottom span { font-size:10px; color:#d0def0; text-shadow:0 2px 4px #000; }
+.voyage-route-progress { width:min(460px,48%); }
+meter,progress { width:100%; height:4px; display:block; margin:10px 0 0; border:none; border-radius:0; background:var(--line); accent-color:var(--gold); }
+progress::-webkit-progress-bar { background:var(--line); }
+progress::-webkit-progress-value { background:var(--gold); }
+meter::-webkit-meter-bar { background:var(--line); border:0; border-radius:0; }
+meter::-webkit-meter-optimum-value { background:var(--gold); }
+.flight-abilities { display:flex; align-items:center; gap:25px; }
+.flight-abilities button { pointer-events:auto; display:flex; align-items:center; gap:15px; padding:9px 12px; border:1px solid #a48ad36e; border-radius:4px; background:#0b152dca; font-size:10px; }
+.flight-abilities button strong { color:var(--violet); font-weight:400; min-width:33px; text-align:right; }
+.flight-abilities button small { margin-left:5px; color:var(--muted); }
+.warp-gauge { width:140px; }
+.warp-gauge > span { display:flex; justify-content:space-between; }
+.warp-gauge small { font-size:9px; color:var(--muted); }
+.planet-labels { position:absolute; z-index:1; inset:0; pointer-events:none; overflow:hidden; }
+.planet-tag { position:absolute; left:0; top:0; font-size:11px; color:#edf5ff; padding:4px 8px 4px 13px; border-left:1px solid #dfeaf58a; text-shadow:0 2px 5px #000; white-space:nowrap; background:linear-gradient(90deg,#06132180,transparent); }
+.planet-tag small { display:block; font-size:9px; color:#b7cde3; margin-top:4px; }
+.sky-tag { color:#bcd3f6; border-left-style:dotted; font-size:10px; }
+.sky-tag small { font-size:8px; }
+.moon-tag { color:#e4dabf; border-left-color:var(--gold); }
+.pickup-center { position:absolute; z-index:2; left:0; top:0; width:18px; height:18px; transform:translate(-50%,-50%); border:1px solid currentColor; border-radius:50%; color:var(--blue); box-shadow:0 0 0 1px #061321,0 0 8px #061321; pointer-events:none; }
+.pickup-center::before { content:""; position:absolute; left:6px; top:6px; width:4px; height:4px; border-radius:50%; background:currentColor; box-shadow:0 0 2px #061321; }
+.pickup-center::after { content:""; position:absolute; left:18px; top:8px; width:14px; height:1px; background:currentColor; }
+.pickup-center span { position:absolute; left:35px; top:0; padding:2px 5px; background:#061321c9; border-radius:3px; white-space:nowrap; font-size:10px; line-height:14px; text-shadow:0 1px 3px #000; }
+.pickup-center.label-left::after { left:auto; right:18px; }
+.pickup-center.label-left span { left:auto; right:35px; }
+.pickup-center.pulse-active { color:var(--violet); }
+.voyage-pickup { position:absolute; z-index:3; left:50%; top:34%; transform:translateX(-50%); color:var(--gold); font-size:25px; pointer-events:none; text-shadow:0 0 15px #e5b775; white-space:nowrap; }
+.voyage-pickup.ufo-bonus { color:#d3bbff; text-shadow:0 0 20px #a77cff; }
+.voyage-callout { position:absolute; z-index:3; top:200px; right:4%; font-size:10px; color:#d3bcff; text-align:right; max-width:220px; pointer-events:none; text-shadow:0 2px 5px #000; }
+.encounter-objects { position:absolute; z-index:2; left:4%; bottom:83px; max-width:45%; font-size:10px; line-height:1.7; color:#c8d8e6; pointer-events:none; text-shadow:0 2px 5px #000; }
+.touch-flight { display:none; position:absolute; z-index:3; left:18px; right:18px; bottom:93px; justify-content:space-between; align-items:flex-end; pointer-events:none; }
+.touch-flight button { pointer-events:auto; touch-action:none; width:42px; height:42px; border:1px solid #9db9ca80; border-radius:8px; background:#091c30b0; color:#d4e5f0; user-select:none; }
+.touch-flight button:active { background:#e5b77570; }
+.touch-directions { display:grid; grid-template-columns:repeat(3,42px); gap:4px; }
+.touch-directions button:first-child { grid-column:2; }
+.touch-directions button:nth-child(2) { grid-column:1; }
+.touch-warp { width:65px !important; height:65px !important; border-radius:50% !important; border-color:#e5b775a0 !important; color:var(--gold) !important; font-size:11px; }
+dialog { max-width:720px; max-height:85dvh; width:calc(100% - 32px); padding:28px; color:var(--text); background:var(--panel); border:1px solid var(--line); border-radius:7px; }
+dialog::backdrop { background:#020810df; }
+.dialog-heading { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; }
+.dialog-heading h2 { font-family:Georgia,serif; font-size:29px; font-weight:400; margin:0; }
+dialog p { color:var(--muted); font-size:12px; line-height:1.8; }
+dialog h3 { margin-top:25px; font-size:13px; font-weight:500; color:var(--gold); }
+@media (pointer:coarse) { .touch-flight { display:flex; } }
+@media (max-width:900px) { .flight-abilities { gap:12px; } .warp-gauge { width:95px; } }
+@media (max-width:600px) {
+  .masthead { min-height:80px; padding:5px 14px; display:grid; grid-template-columns:1fr auto; gap:3px 10px; }
+  .brand { font-size:13px; gap:7px; }
+  .brand svg { width:25px; }
+  .brand small { font-size:8px; }
+  .chapter-picker { grid-column:1 / -1; grid-row:2; width:100%; }
+  .chapter-picker select { width:100%; max-width:none; padding:5px 9px; font-size:10px; }
+  .header-actions { gap:4px; }
+  .header-actions .quiet { font-size:9px; padding-left:2px; padding-right:2px; }
+  .sound-settings fieldset { right:-80px; width:200px; }
+  #fullscreen { font-size:22px; }
+  .voyage-hud { top:18px; gap:7px; left:5%; right:5%; }
+  .voyage-hud span { font-size:9px; }
+  .voyage-hud small { font-size:8px; }
+  .voyage-hud strong { font-size:29px; }
+  .voyage-epoch { max-width:150px; }
+  .voyage-epoch strong { font-size:12px; margin-top:4px; }
+  .voyage-actions { top:123px; gap:6px; right:5%; }
+  .voyage-actions button { font-size:9px; padding:7px 8px; }
+  .voyage-overlay { inset:174px 0 122px; padding:0 6%; align-items:flex-start; background:linear-gradient(90deg,#02050bd9,#02050b40); }
+  .voyage-intro { max-width:310px; }
+  .voyage-intro h2 { font-size:36px; margin:7px 0 12px; }
+  .voyage-intro > p:not(.kicker) { font-size:11px; max-width:37ch; line-height:1.7; }
+  .voyage-intro .primary { margin-top:14px; max-width:265px; }
+  .voyage-intro > small { font-size:9px; }
+  .pickup-guide { gap:14px; }
+  .pickup-guide > span { font-size:9px; }
+  .voyage-bottom { bottom:16px; gap:15px; align-items:stretch; flex-direction:column; }
+  .voyage-route-progress { width:100%; }
+  .flight-abilities { justify-content:space-between; gap:10px; }
+  .warp-gauge { width:42%; }
+  .voyage-callout { top:163px; right:5%; font-size:9px; }
+  .encounter-objects { top:139px; bottom:auto; left:5%; max-width:38%; font-size:8px; }
+  .touch-flight { bottom:128px; }
+  .voyage-pickup { font-size:19px; top:42%; }
+  .pickup-center span { font-size:9px; }
+  .dialog-heading h2 { font-size:24px; }
+}
+@media (max-height:600px) {
+  .voyage-hud { top:12px; }
+  .voyage-hud > div { gap:3px; }
+  .voyage-hud strong { font-size:24px; }
+  .voyage-epoch strong { font-size:13px; }
+  .voyage-actions { top:104px; }
+  .voyage-callout { top:145px; }
+  .voyage-overlay { inset:112px 0 75px; align-items:flex-start; }
+  .voyage-intro h2 { font-size:32px; }
+  .encounter-objects { display:none; }
+  .touch-flight { bottom:90px; }
+}
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; } }

@@ -1,0 +1,16 @@
+image: node:22
+
+deploy-pages:
+  stage: deploy
+  script:
+    - npm ci --no-audit --no-fund
+    - npm test
+    - npm run build
+    - mkdir -p public/data
+    - cp index.html style.css icon.svg game.js THIRD-PARTY-NOTICES.md public/
+    - cp data/ephemeris.json public/data/
+    - cp data/moons.json public/data/
+  pages:
+    publish: public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
