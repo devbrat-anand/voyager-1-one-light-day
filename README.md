@@ -1,22 +1,47 @@
 # Voyager 1: One Light-Day
 
-**[Play now in your browser](https://devbrat-anand.github.io/voyager-1-one-light-day/)**
+Carry a little Earth into forever.
 
-Watch the gameplay trailer:
+A 3D browser arcade tribute to Voyager 1: fly 50 yearly levels along real NASA/JPL trajectories, collect golden records, and journey one light-day from home.
+
+**[Play now](https://devbrat-anand.github.io/voyager-1-one-light-day/)** · [How to play](#play) · [The science](#science-and-visual-honesty) · [Run locally](#local-preview-and-standalone-html) · [Report a bug](https://github.com/devbrat-anand/voyager-1-one-light-day/issues)
+
+No install, account or API key. Play with a keyboard or touch controls in a WebGL 2 browser. Enable **Sound on** for the original music and effects.
+
+## Gameplay trailer
 
 https://github.com/user-attachments/assets/34d9a56a-3440-4f99-84f4-de070e858394
 
-A single-screen 3D arcade tribute for **18 November 2026**, when NASA announces Voyager 1 reaching one light-day from Earth: **02:16:07 PST / 10:16:07 UTC**, approximately **25.902 billion km** away.
+## The journey
 
-A tribute to Voyager 1 and the spirit of exploration, developed by [Devbrat Anand](https://www.linkedin.com/in/devbrat-anand/). Developer credit is not displayed in About; asset-license notices remain in the release documentation and embedded standalone-file notices.
+- **1977 to 2026:** follow 50 calendar-year levels, with milestones including Jupiter, Saturn, the Pale Blue Dot and interstellar space. Start from any year.
+- **A route grounded in data:** Voyager 1 and planet positions come from bundled NASA/JPL Horizons states; six moons follow historical orbital data during the Jupiter and Saturn encounters.
+- **Arcade freedom:** steer for golden records, chain combos, intercept UFOs, fire a pickup pulse and spend your warp reserve.
+- **An original soundscape:** locally synthesized ambient music, combo chimes, encounter accents and a light-day finale.
+- **Play your way:** desktop and touch controls, pause-and-orbit views, browser-local best scores and a buildable single-file offline edition.
 
-Fly a modeled Voyager 1 along real NASA/JPL trajectory segments. Collect golden records, intercept moving violet UFOs, use pickup pulses and manage a finite time-warp reserve. Textured planets, Saturn's rings, an illustrative Milky Way and named sky directions surround the route. The previous console tabs and Voyager 2 campaign are no longer in the interface.
+The game celebrates NASA's announced **18 November 2026** one-light-day milestone: approximately **25.902 billion km** from Earth. It uses bundled historical data, not live telemetry. The route is real; UFOs, pickups, warp and the celebratory gate are fictional. Distances, sizes and time are adapted for play. This is not NASA software or an endorsement.
 
-The canvas fills the window below a compact chapter bar: about 95% of a 1,000 px-high desktop screen, or 90% of an 844 px-high phone. There is no separate hero, footer or text panel to scroll past. Instructions, the anniversary countdown, science disclosures and credits live under **About & science**. The layout also follows the available viewport inside Google Sites.
+<details>
+<summary>Visual design and encounter details</summary>
+
+The canvas fills the window below a compact chapter bar, with instructions and scientific context under **About & science**. The layout also follows the available viewport inside Google Sites.
 
 The 1979 and 1980 levels include **Io, Europa, Ganymede and Callisto** at Jupiter and **Titan and Enceladus** at Saturn while their encounter windows are being played. Their orbital directions come from downloaded hourly JPL states; moons are hidden outside those data windows. Displayed orbital distances are compressed and moon sizes enlarged; surfaces are procedural illustrations. The illuminated sky adds **15,160 decorative star points** in three lightweight batches: 7,200 faint field stars, 160 brighter blue-white/warm stars, and 7,800 fine stellar-band points, alongside a brighter Milky Way texture and blue/violet haze. Stars are deterministic and steady, without flashing, twinkling or a bloom post-processing pass. Dark space remains between stars for pickup visibility. **Sky names** toggles labels, not the starfield. Occasional rocky **meteoroids** are non-colliding illustrative scenery outside the steering corridor, not tracked debris, fiery atmospheric meteors or a claim that Voyager flies through a dense asteroid field.
 
+</details>
+
 ## Play
+
+Choose a year and press Start. Forward flight is automatic; steer to collect pickups. Aim with the cyan **Pickup center** ring on the spacecraft's golden body, rather than its dish or antenna tips.
+
+| Action | Keyboard | Touch / on-screen |
+|---|---|---|
+| Steer | Arrow keys or WASD | Drag the scene or hold direction buttons |
+| Pickup pulse | E | Pickup pulse |
+| Time warp | Hold Space | Hold Warp |
+| Pause | P | Pause |
+| Explore the view | Look around, then drag | Look around, then drag |
 
 Fly **50 yearly levels, 1977–2026**, with no gaps between their historical date ranges. Most span 1 January to the next 1 January. The launch level begins on **6 September 1977**, the first bundled JPL state after the real 5 September launch. The finale ends at the exact announced milestone time.
 
@@ -59,6 +84,8 @@ Pause, About, Mix, Look around, switching years, losing focus and hiding the pag
 All audio is synthesized locally with Web Audio, including in the standalone HTML. There are no audio downloads, external music licenses or audio network requests.
 
 ## Local preview and standalone HTML
+
+Requires Node.js 22 or later, npm and Python 3 for the local server and packaging.
 
 Clone the repository and run from its root:
 
@@ -165,3 +192,9 @@ Browser suites require Python Playwright and Chromium. The flight and release su
 Screenshots default to `/tmp/voyager-lightday` and `/tmp/voyager-3d`. Override `VOYAGER_ARTIFACTS` or `VOYAGER_URL` as needed. These checks do not authenticate to or publish on Google Sites or GitLab.
 
 The audio suite renders the real synthesizer through `OfflineAudioContext` and checks PCM output for default silence, independent mixing, rising combo pitch, distinct effects, a seamless loop, bounded levels and pause/disposal silence. It also exercises the actual game controls, record/UFO catches, warp, repeated pause/resume, small-screen layout, explicit audio failure and offline playback using a real browser audio context. Its completion, automatic-next-year and one-shot milestone checks advance the browser's animation clock through the real game loop without replacing game state.
+
+## Feedback and credits
+
+Found a bug or have an idea? [Open an issue](https://github.com/devbrat-anand/voyager-1-one-light-day/issues) with your browser, device, selected year and steps to reproduce. Screenshots or short recordings help explain visual issues.
+
+Created by [Devbrat Anand](https://www.linkedin.com/in/devbrat-anand/). Trajectory data: NASA/JPL Horizons. Planet and Milky Way textures: Solar System Scope, CC BY 4.0, based on NASA imagery. Renderer: Three.js, MIT. See [Third-party notices](THIRD-PARTY-NOTICES.md) for attribution and license details.
