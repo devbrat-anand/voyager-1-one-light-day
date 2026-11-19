@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071322">
+  <meta name="description" content="Celebrate Voyager 1 reaching one light-day from Earth on 18 November 2026. A 3D arcade journey along NASA/JPL routes, with golden records, UFO bonuses and a universe to explore.">
+  <title>Voyager 1: One Light-Day</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#voyage-canvas">Skip to game</a>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="Voyager 1 One Light-Day home"><svg viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="17"/><path d="M7 31 33 8M12 12c-3 15 3 21 18 18M21 7v28M7 21h28"/></svg><span>Voyager 1<small>One Light-Day</small></span></a>
+    <label class="chapter-picker" for="chapter"><span class="sr-only">Choose a year, 1977 to 2026; starts a new journey score</span><select id="chapter" title="Choosing a year starts a new journey score"><option value="0">1977 · Preparing flight…</option></select></label>
+    <div class="header-actions"><button id="sound" class="quiet" aria-pressed="false">Sound off</button><details id="sound-settings" class="sound-settings"><summary class="quiet" aria-label="Audio mix settings">Mix</summary><fieldset><legend>Audio mix</legend><label><input id="music" type="checkbox" checked> Music</label><label><input id="effects" type="checkbox" checked> Effects</label><small>Enable Sound to listen. Close Mix and resume your flight.</small></fieldset></details><button id="sources-open" class="quiet">About &amp; science</button><button id="fullscreen" class="quiet" aria-label="Enter fullscreen">⛶</button></div>
+  </header>
+  <main>
+    <div id="app-status" class="app-status" role="status">Loading Voyager 1’s real flight path…</div>
+    <section id="voyage" aria-label="Voyager 1 anniversary arcade">
+      <h1 class="sr-only">Voyager 1: One light-day from home</h1>
+      <div id="voyage-stage" class="voyage-stage">
+        <canvas id="voyage-canvas" tabindex="0" aria-label="Voyager 1 3D arcade. The cyan Pickup center ring marks the aiming point on the golden body beneath the dish. A faint outer halo shows gold collection reach when passing pickups; UFOs have slightly more reach. Arrow keys or W A S D to steer. Hold Space for time warp. E activates a pickup pulse. P pauses. Drag to steer or use the on-screen controls on touch screens."></canvas>
+        <div id="planet-labels" class="planet-labels" aria-hidden="true"></div>
+        <div id="pickup-center" class="pickup-center" aria-hidden="true" hidden><span>Pickup center</span></div>
+        <div class="voyage-hud">
+          <div class="voyage-score"><span>Year score</span><strong id="voyage-score">0</strong><small id="voyage-coins">0 / 45 records</small><small id="voyage-ufos">0 / 6 UFOs</small><small id="journey-score">Journey 0</small></div>
+          <div class="voyage-epoch"><span id="voyage-planet">A little Earth takes flight</span><strong id="voyage-date">1977</strong><small id="voyage-level">Level 1 / 50</small><small id="voyage-lighttime">A signal’s journey to Earth</small></div>
+          <div class="voyage-combo"><span>Pickup combo</span><strong id="voyage-combo">×1</strong><small id="voyage-best">Best 0</small><small id="voyage-medal">Find your flight line</small></div>
+        </div>
+        <div class="voyage-actions"><button id="sky-toggle" class="quiet" aria-pressed="true">Sky names on</button><button id="voyage-look" class="quiet">Look around</button><button id="voyage-pause" class="quiet" disabled>Pause</button></div>
+        <div id="voyage-overlay" class="voyage-overlay">
+          <div class="voyage-intro">
+            <p class="kicker" id="voyage-overlay-kicker">18 November 2026 · Voyager 1</p>
+            <h2 id="voyage-overlay-title">Carry a little<br>Earth into forever.</h2>
+            <p id="voyage-overlay-story">Preparing your journey through 49 years of exploration…</p>
+            <div class="pickup-guide"><span><i class="record-icon"></i>Gold record <strong>100</strong></span><span><i class="ufo-icon">◒</i>UFO rendezvous <strong>750</strong></span></div>
+            <p class="voyage-result" id="voyage-result"></p>
+            <p id="level-transition" class="level-transition" role="status" hidden></p>
+            <button id="voyage-start" class="primary" disabled>Preparing flight…</button>
+            <button id="voyage-milestone" class="quiet" disabled>Jump to the one light-day run</button>
+            <button id="voyage-next" class="quiet" hidden>Replay year</button>
+            <small>Aim with the cyan Pickup center; the faint halo shows gold reach.<br>Arrows / WASD or touch to steer · Space to warp · E for pulse · P to pause<br>UFOs are fictional bonus pickups</small>
+          </div>
+        </div>
+        <div id="voyage-pickup" class="voyage-pickup" aria-hidden="true"></div>
+        <div id="voyage-callout" class="voyage-callout" role="status">Collect the gold. Chase the violet.</div>
+        <div id="encounter-objects" class="encounter-objects">Jupiter system · real moons, display scale</div>
+        <div class="voyage-bottom">
+          <div class="voyage-route-progress"><span id="voyage-distance">Following Voyager 1’s historical route</span><progress id="voyage-progress" max="1" value="0"></progress></div>
+          <div class="flight-abilities"><button id="voyage-pulse" disabled><span>Pickup pulse <small>E</small></span><strong id="pulse-status">Ready</strong></button><div class="warp-gauge"><span>Time warp <small>Space</small></span><meter id="voyage-charge" min="0" max="1" value="1"></meter></div></div>
+        </div>
+        <div class="touch-flight" aria-label="Touch flight controls"><div class="touch-directions"><button data-steer="up" aria-label="Steer up">↑</button><button data-steer="left" aria-label="Steer left">←</button><button data-steer="down" aria-label="Steer down">↓</button><button data-steer="right" aria-label="Steer right">→</button></div><button data-steer="boost" class="touch-warp" aria-label="Hold for time warp">Warp</button></div>
+      </div>
+      <p id="voyage-accessible-status" class="sr-only" role="status"></p>
+    </section>
+  </main>
+  <dialog id="sources-dialog" aria-labelledby="sources-title">
+    <div class="dialog-heading"><h2 id="sources-title">One day of light. A lifetime of exploration.</h2><button id="sources-close" class="quiet" aria-label="Close about and science">✕</button></div>
+    <p>NASA announces Voyager 1 reaching one light-day from Earth on <strong>18 November 2026 at 02:16:07 PST / 10:16:07 UTC</strong>, at approximately 25.902 billion km. This is a distance milestone, not a change in spacecraft speed. A reply to a command would need about 48 hours for the round trip, before processing time.</p>
+    <p><a href="https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/" target="_blank" rel="noopener noreferrer">NASA’s official light-day announcement ↗</a></p>
+    <p>Milestone countdown: <strong id="anniversary-countdown">18 Nov 2026</strong>. A day of light is approximately 25.902 billion km.</p>
+    <h3>How to play</h3><p>Fly 50 yearly levels, from 1977 to 2026. Quiet years last 45 seconds; eight milestone years last 80–100 seconds. Unboosted flight time is 43 minutes 30 seconds, or about 47 minutes including automatic transitions. A completion screen appears for four seconds, then the next year begins automatically. Your journey score carries forward; each year starts with fresh pickups, a full warp reserve and a ready pulse. Pause, About and Look around also stop the transition countdown. The year selector starts a new journey from any year; Replay year resets the journey score.</p><p>Steer with arrows / WASD or drag on touch screens. Gold records score 100, moving UFOs 750; chain pickups up to 5×. UFOs refill warp. Hold Space or Warp to accelerate. Press E or Pickup pulse for 1.8 seconds of wider collection reach, with a 14-second cooldown. P pauses. Best scores are saved per year, separately from the earlier four-chapter version.</p>
+    <p>The cyan <strong>Pickup center</strong> ring follows the golden body beneath Voyager’s dish: aim with that point, not the dish edge or antenna tips. The faint outer halo shows gold collection reach in the flight cross-section as you pass a pickup, not a long-distance magnet. Gold and UFO pickup radii are 25% wider than before; UFOs still have slightly more forgiving reach than gold and can be collected just outside the halo. Exact surface contact is not required. During a pickup pulse the marker and halo turn violet, and the halo expands to the pulse’s unchanged reach.</p>
+    <h3>Sound &amp; music</h3><p>Audio is off until you choose Sound on. Mix has separate Music and Effects controls. A quiet original space-music loop accompanies flight; record chimes rise with your combo, UFOs have a distinct reward, and pulse and warp have their own effects. Planetary encounters and the light-day approach add a musical accent; each year ends with a short flourish, with a fuller finale in 2026. Pause, About, Mix, Look around and leaving the page silence playback until you resume. All sounds are synthesized locally, with no audio downloads. Audio choices last for this page session.</p>
+    <h3>The route is real</h3><p id="data-provenance">Loading data provenance…</p><p>All 50 levels use Voyager 1—not Voyager 2. Each level follows its calendar year; 1977 begins on 6 September, the first available bundled JPL state after the 5 September launch. Subsequent years meet at 1 January with no time gaps. The 2026 finale ends exactly at NASA’s announced November milestone time. Milestone years highlight launch, Jupiter (1979), Saturn (1980), the Pale Blue Dot (1990), overtaking Pioneer 10 (1998), the termination shock (2004), the heliopause (2012), and one light-day (2026). The early Voyager 1 JPL solution is an approximate mission-design reconstruction, not perfect historical navigation telemetry.</p>
+    <p>Coordinates are heliocentric ecliptic J2000; time is UTC. Cubic Hermite interpolation uses JPL positions and velocities. Planet positions come from the same data bundle. A floating camera origin avoids astronomical precision loss. The Earth light-time readout is 3D geometric range divided by c; it can differ slightly from NASA’s operational milestone estimate. It is not a live spacecraft feed.</p>
+    <h3>Planetary moons</h3><p>Jupiter’s Io, Europa, Ganymede and Callisto, and Saturn’s Titan and Enceladus use real, hourly NASA/JPL Horizons states relative to their parent planet during the respective encounter. The moon data spans 23 February–15 March 1979 and 2–22 November 1980, not the full calendar year. Moons appear only while that encounter window is being played. Orbital directions evolve with the game’s historical date. Orbit distances are compressed and moon sizes enlarged to make the systems readable beside enlarged planets; these are not true-scale flyby distances. Surfaces are original procedural illustrations, not spacecraft photographs.</p><p id="moon-provenance"></p><p>Moon radii reference: <a href="https://ssd.jpl.nasa.gov/sats/phys_par/" target="_blank" rel="noopener noreferrer">JPL planetary satellite physical parameters</a>.</p>
+    <h3>The fun is fictional</h3><p>UFOs, coins, pulse fields, scoring and warp are arcade inventions. Touching a UFO awards more points than gold and restores some warp charge. Voyager has never reported an alien encounter. Sideways steering does not alter the underlying JPL path. Planet sizes, spacecraft scale and time are exaggerated. The occasional rocky meteoroids beside the route are non-colliding illustrative scenery, not tracked objects or a real dense asteroid field. They have no fiery trails: a meteor is the atmospheric light phenomenon, not a burning rock in empty space. Beyond the heliopause, the colored haze and celebratory light-day gate are artistic—not observed nebulae, physical boundaries or real objects near Voyager. Entering interstellar space does not mean leaving the entire solar system or Oort Cloud.</p>
+    <h3>Finding your way around the sky</h3><p>Vega, Altair, Deneb, Antares, Polaris and the Galactic Center have approximate J2000 equatorial coordinates converted to ecliptic directions. Their markers are distant direction references, not close flybys; proper motion and parallax are not modeled. The brighter Milky Way and layered blue-white and warm starfield are decorative, not a registered star catalog or a view from Voyager’s camera. Stars do not flash or twinkle. Use Look around and drag to explore. Disable Sky names to hide labels without dimming the stars.</p>
+    <p>Trajectory reference: <a href="https://ssd-api.jpl.nasa.gov/doc/horizons.html" target="_blank" rel="noopener noreferrer">NASA/JPL Horizons API</a>.</p>
+  </dialog>
+  <noscript><p class="app-status">Enable JavaScript to play the 3D Voyager 1 anniversary game.</p></noscript>
+  <script defer src="game.js"></script>
+</body>
+</html>
