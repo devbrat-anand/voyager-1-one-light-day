@@ -1,5 +1,9 @@
 # Voyager 1: One Light-Day
 
+Watch the gameplay trailer:
+
+https://github.com/user-attachments/assets/34d9a56a-3440-4f99-84f4-de070e858394
+
 A single-screen 3D arcade tribute for **18 November 2026**, when NASA announces Voyager 1 reaching one light-day from Earth: **02:16:07 PST / 10:16:07 UTC**, approximately **25.902 billion km** away.
 
 A tribute to Voyager 1 and the spirit of exploration, developed by [Devbrat Anand](https://www.linkedin.com/in/devbrat-anand/). Developer credit is not displayed in About; asset-license notices remain in the release documentation and embedded standalone-file notices.
