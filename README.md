@@ -1,5 +1,7 @@
 # Voyager 1: One Light-Day
 
+**[Play now in your browser](https://devbrat-anand.github.io/voyager-1-one-light-day/)**
+
 Watch the gameplay trailer:
 
 https://github.com/user-attachments/assets/34d9a56a-3440-4f99-84f4-de070e858394
@@ -87,6 +89,12 @@ Generated files:
 | `voyager-last-light-site.zip` | Compatibility copy of the anniversary hosting ZIP |
 
 The standalone file works offline. There is **no runtime NASA request, CDN, backend, account, API key or analytics**. NASA/JPL data is bundled, not live telemetry. The source checkout needs its generated `game.js`; packaged files need no build tools.
+
+## GitHub Pages
+
+Play at <https://devbrat-anand.github.io/voyager-1-one-light-day/>.
+
+GitHub Pages serves the prebuilt site from the root of the `gh-pages` branch. To update the hosted game, run `python3 scripts/package.py`, extract `dist/voyager-one-light-day-site.zip` into a separate checkout of `gh-pages`, retain `.nojekyll`, and commit and push that branch. Changes to `main` alone do not rebuild the hosted game. In repository **Settings → Pages**, keep **Deploy from a branch → gh-pages → / (root)** selected.
 
 ## Google Sites and GitLab Pages
 
